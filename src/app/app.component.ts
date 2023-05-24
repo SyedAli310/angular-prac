@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'experiment';
+
+
+  test(event: any) {
+    console.log('continous', event.target.value);
+  }
+
+  test2(event: any) {
+    console.log('release', event.target.value);
+  }
 }

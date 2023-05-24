@@ -6,8 +6,48 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.kekastatic.net/shared/keka-ui/2.1.2/keka/css/keka-ui.min.css" rel="stylesheet" />
+  <link href="https://cdn.kekastatic.net/shared/icons/1.0.2/keka-icons.css" rel="stylesheet" />
 </head>
 <body>
   <app-root></app-root>
+  <script defer src="https://cdn.kekastatic.net/shared/keka-ui/2.1.0/keka/js/keka-ui.min.js"></script>
+  <script>
+
+    window.addEventListener('load', () => {
+      /*=============== RANGE SLIDER JS ===============*/
+        const rangeThumb = document.getElementById('range-thumb'),
+              rangeNumber = document.getElementById('range-number'),
+              rangeLine = document.getElementById('range-line'),
+              rangeInput = document.getElementById('range-input')
+  
+        const rangeInputSlider = () =>{
+  
+          // Insert the value of the input range
+          rangeNumber.textContent = rangeInput.value
+  
+          // Calculate the position of the input thumb
+          // rangeInput.value = 50, rangeInput.max = 100, (50 / 100 = 0.5)
+          // rangeInput.offsetWidth = 248, rangeThumb.offsetWidth = 32, (248 - 32 = 216)
+          const thumbPosition = (rangeInput.value / rangeInput.max),
+                space = rangeInput.offsetWidth - rangeThumb.offsetWidth
+  
+          // We insert the position of the input thumb
+          // thumbPosition = 0.5, space = 216 (0.5 * 216 = 108)
+          rangeThumb.style.left = (thumbPosition * space) + 'px'
+  
+          // We insert the width to the slider with the value of the input value
+          // rangeInput.value = 50, ancho = 50%
+          rangeLine.style.width = rangeInput.value + '%'
+  
+          // We call the range input
+          rangeInput.addEventListener('input', rangeInputSlider)
+        }
+  
+        rangeInputSlider()
+      
+    })
+
+  </script>
 </body>
 </html>
